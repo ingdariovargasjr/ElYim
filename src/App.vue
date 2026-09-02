@@ -564,9 +564,6 @@ function logout() {
     </Transition>
     <div class="mx-auto flex min-h-[calc(100vh-3rem)] max-w-6xl flex-col">
       <header class="flex items-center justify-between">
-        <button class="flex items-center gap-3 text-left" aria-label="El Yim inicio" @click="openView(sessionUser ? 'dashboard' : 'welcome')">
-          <span class="grid size-10 place-items-center rounded-2xl bg-lime-300 font-black text-slate-950 shadow-[0_0_30px_rgba(7,176,242,0.35)]">Y</span>
-        </button>
         <div class="topbar-actions">
           <button type="button" class="theme-toggle" role="switch" :aria-checked="theme === 'dark'" :aria-label="theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro'" @click="toggleTheme"><span :class="{ 'theme-label-active': theme === 'light' }">Claro</span><span class="theme-track"><span class="theme-thumb" :class="{ 'theme-thumb-light': theme === 'light' }"></span></span><span :class="{ 'theme-label-active': theme === 'dark' }">Oscuro</span></button>
           <button v-if="sessionUser" type="button" class="logout-button" @click="logout">Salir</button>

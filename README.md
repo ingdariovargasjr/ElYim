@@ -1,4 +1,4 @@
-# GymApp
+# El Yim
 
 Aplicación móvil y web para organizar planes de entrenamiento, alimentación y recuperación a partir de la información proporcionada por el instructor y el nutriólogo.
 

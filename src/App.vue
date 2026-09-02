@@ -12,6 +12,7 @@ import { getCycleCalendar, getCycleSummary, getDefaultCycle, getStoredCycle, sav
 import { analyzeDocumentPrototype, discardDocumentReview, getStoredDocument, saveDocumentReview } from './services/documents'
 import { getPendingSyncCount, syncPendingChanges } from './services/sync'
 import { getDefaultAiProvider, getStoredAiProvider, saveAiProvider, testAiProviderConnection, validateAiProviderConfig } from './services/ai-provider'
+import BrandSplash from './components/BrandSplash.vue'
 import SkeletonLoader from './components/SkeletonLoader.vue'
 import ProgressCheckinView from './components/ProgressCheckinView.vue'
 
@@ -68,9 +69,11 @@ const providerForm = reactive({
 const providerError = ref('')
 const providerMessage = ref('')
 const providerTesting = ref(false)
+const splashVisible = ref(true)
 const isViewLoading = ref(Boolean(sessionUser.value))
 const chartAnimationKey = ref(0)
 let viewLoadingTimer
+let splashTimer
 
 if (typeof document !== 'undefined') document.documentElement.dataset.theme = theme.value
 
@@ -524,6 +527,7 @@ function formatFileSize(bytes) {
 
 onMounted(() => {
   document.documentElement.dataset.theme = theme.value
+  splashTimer = setTimeout(() => { splashVisible.value = false }, 1500)
   window.addEventListener('online', handleOnline)
   window.addEventListener('offline', handleOffline)
   window.addEventListener('keydown', handleEscape)
@@ -535,6 +539,7 @@ onBeforeUnmount(() => {
   window.removeEventListener('keydown', handleEscape)
   if (documentProgressTimer) clearInterval(documentProgressTimer)
   if (viewLoadingTimer) clearTimeout(viewLoadingTimer)
+  if (splashTimer) clearTimeout(splashTimer)
 })
 
 function logout() {
@@ -553,12 +558,14 @@ function logout() {
 </script>
 
 <template>
-  <main :data-theme="theme" class="app-shell min-h-screen overflow-hidden px-5 py-6 text-white sm:px-8">
+  <main :data-theme="theme" class="app-shell min-h-screen overflow-hidden px-5 pb-6 pt-3 text-white sm:px-8 sm:pt-4">
+    <Transition name="brand-splash" appear>
+      <BrandSplash v-if="splashVisible" />
+    </Transition>
     <div class="mx-auto flex min-h-[calc(100vh-3rem)] max-w-6xl flex-col">
       <header class="flex items-center justify-between">
         <button class="flex items-center gap-3 text-left" aria-label="El Yim inicio" @click="openView(sessionUser ? 'dashboard' : 'welcome')">
           <span class="grid size-10 place-items-center rounded-2xl bg-lime-300 font-black text-slate-950 shadow-[0_0_30px_rgba(7,176,242,0.35)]">Y</span>
-          <span class="text-lg font-bold tracking-tight">El Yim</span>
         </button>
         <div class="topbar-actions">
           <button type="button" class="theme-toggle" role="switch" :aria-checked="theme === 'dark'" :aria-label="theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro'" @click="toggleTheme"><span :class="{ 'theme-label-active': theme === 'light' }">Claro</span><span class="theme-track"><span class="theme-thumb" :class="{ 'theme-thumb-light': theme === 'light' }"></span></span><span :class="{ 'theme-label-active': theme === 'dark' }">Oscuro</span></button>

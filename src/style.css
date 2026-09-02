@@ -496,6 +496,26 @@ button { cursor: pointer; }
 @keyframes skeleton-shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
 @keyframes orbit-spin { to { transform: rotate(360deg); } }
 
+.brand-splash { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; overflow: hidden; background: radial-gradient(circle at 50% 38%, rgb(7 176 242 / 0.18), transparent 21rem), var(--app-bg); color: var(--app-text); }
+.brand-splash-aura { position: absolute; width: min(92vw, 38rem); aspect-ratio: 1; border: 1px solid rgb(5 199 242 / 0.22); border-radius: 999px; box-shadow: 0 0 90px rgb(7 176 242 / 0.16), inset 0 0 80px rgb(5 199 242 / 0.08); animation: splash-aura-pulse 1800ms ease-in-out infinite; }
+.brand-splash-content { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; animation: splash-content-in 800ms cubic-bezier(.2,.8,.2,1) both; }
+.brand-splash-logo-frame { width: min(58vw, 13rem); aspect-ratio: 1; overflow: hidden; border: 1px solid rgb(5 199 242 / 0.6); border-radius: 27%; background: #0560C7; box-shadow: 0 22px 70px rgb(7 176 242 / 0.28), 0 0 0 0.65rem rgb(7 176 242 / 0.06); animation: splash-logo-in 950ms cubic-bezier(.2,.8,.2,1) 100ms both; }
+.brand-splash-logo { display: block; width: 100%; height: 100%; object-fit: cover; }
+.brand-splash-name { margin-top: 1.6rem; color: var(--color-primary); font-size: clamp(1.9rem, 8vw, 2.7rem); font-weight: 900; letter-spacing: -0.05em; animation: splash-text-in 600ms ease 500ms both; }
+.brand-splash-message { margin-top: 0.4rem; color: var(--app-muted); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; animation: splash-text-in 600ms ease 620ms both; }
+.brand-splash-loader { display: inline-flex; gap: 0.35rem; margin-top: 2rem; }
+.brand-splash-loader span { width: 0.38rem; height: 0.38rem; border-radius: 999px; background: var(--color-cyan); animation: splash-dot 850ms ease-in-out infinite; }
+.brand-splash-loader span:nth-child(2) { animation-delay: 140ms; }
+.brand-splash-loader span:nth-child(3) { animation-delay: 280ms; }
+.brand-splash-enter-active, .brand-splash-leave-active { transition: opacity 320ms ease, visibility 320ms ease; }
+.brand-splash-enter-from, .brand-splash-leave-to { opacity: 0; visibility: hidden; }
+
+@keyframes splash-aura-pulse { 0%, 100% { transform: scale(.94); opacity: .55; } 50% { transform: scale(1.04); opacity: 1; } }
+@keyframes splash-content-in { from { opacity: 0; transform: translateY(1rem) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes splash-logo-in { 0% { opacity: 0; transform: scale(.55) rotate(-9deg); } 65% { opacity: 1; transform: scale(1.06) rotate(2deg); } 100% { opacity: 1; transform: scale(1) rotate(0); } }
+@keyframes splash-text-in { from { opacity: 0; transform: translateY(.5rem); } to { opacity: 1; transform: translateY(0); } }
+@keyframes splash-dot { 0%, 100% { transform: translateY(0); opacity: .35; } 50% { transform: translateY(-.25rem); opacity: 1; } }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }

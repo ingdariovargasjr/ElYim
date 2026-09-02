@@ -1,0 +1,8 @@
+{
+  "appId": "com.gymapp.mobile",
+  "appName": "GymApp",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}

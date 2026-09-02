@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+
+# Capacitor generated native artifacts that are machine-specific during development
+android/.gradle/
+android/.idea/
+android/build/
+ios/App/Pods/
+ios/App/App/public/
+

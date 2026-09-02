@@ -6,13 +6,13 @@
 
 ## Objetivo
 
-Explicar rápidamente el valor de GymApp y ofrecer al usuario dos caminos: crear una cuenta o iniciar sesión.
+Explicar rápidamente el valor de El Yim y ofrecer al usuario dos caminos: crear una cuenta o iniciar sesión.
 
 ## Alcance
 
 Incluye una pantalla móvil-first con:
 
-- Nombre y propuesta de valor de GymApp.
+- Nombre y propuesta de valor de El Yim.
 - Beneficios principales.
 - Acciones para crear cuenta e iniciar sesión.
 - Indicador de que el plan puede consultarse y sincronizarse.
@@ -37,4 +37,3 @@ Durante este incremento, ambas acciones muestran un estado de “próximamente�
 - El contraste del texto es legible sobre el fondo.
 - La interfaz conserva una alternativa visual razonable si el efecto glass no está disponible.
 - No se solicitan permisos del dispositivo antes de que exista una función que los necesite.
-

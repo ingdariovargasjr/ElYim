@@ -291,7 +291,7 @@ Los componentes no deberán depender exclusivamente de colores Tailwind específ
 
 ### Historia de usuario refinada
 
-Como usuario, quiero que los botones, acentos, focos y elementos principales de la interfaz utilicen azul, para que el amarillo funcione únicamente como color secundario y la jerarquía visual sea más consistente con la identidad de GymApp.
+Como usuario, quiero que los botones, acentos, focos y elementos principales de la interfaz utilicen azul, para que el amarillo funcione únicamente como color secundario y la jerarquía visual sea más consistente con la identidad de El Yim.
 
 ### Decisión visual
 

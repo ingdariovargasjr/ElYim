@@ -6,7 +6,7 @@
 
 ## Historia de usuario
 
-Como desarrollador de GymApp, quiero proporcionar manualmente la URL y configuración del proveedor externo de IA para conectar OCR, extracción de texto y organización del plan mediante un adaptador controlado.
+Como desarrollador de El Yim, quiero proporcionar manualmente la URL y configuración del proveedor externo de IA para conectar OCR, extracción de texto y organización del plan mediante un adaptador controlado.
 
 ## Alcance previsto
 
@@ -24,7 +24,7 @@ Como desarrollador de GymApp, quiero proporcionar manualmente la URL y configura
 1. Tú proporcionarás la documentación oficial y URL del proveedor.
 2. Identificaremos endpoint, método HTTP, autenticación, modelo y formato de respuesta.
 3. La clave se guardará únicamente como secreto del backend; nunca en Vue, PWA, APK, IPA ni repositorio.
-4. Crearemos un adaptador que normalice la respuesta a campos de GymApp.
+4. Crearemos un adaptador que normalice la respuesta a campos de El Yim.
 5. Probaremos texto digital, PDF escaneado, tablas y errores de límite.
 6. La extracción seguirá requiriendo revisión humana antes de activar cambios.
 
@@ -50,7 +50,7 @@ En este incremento se implementó la primera parte de la historia:
 ## Pendiente para cerrar la historia
 
 - Crear el backend o función server-side que lea `OPENAI_API_KEY` desde secretos.
-- Implementar el adaptador HTTP real y normalizar la respuesta a GymApp.
+- Implementar el adaptador HTTP real y normalizar la respuesta a El Yim.
 - Probar documentos digitales, PDFs escaneados, tablas, errores de autenticación y límites.
 - Mantener revisión humana antes de activar cualquier cambio en dieta o rutina.
 

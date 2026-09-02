@@ -4,12 +4,12 @@
 
 ## Contexto y objetivo
 
-GymApp debe compartir su experiencia web mobile-first con una PWA y con proyectos nativos Android/iOS mediante Capacitor. Este incremento prepara el empaquetado y los assets, pero no publica todavía en tiendas ni configura certificados de firma.
+El Yim debe compartir su experiencia web mobile-first con una PWA y con proyectos nativos Android/iOS mediante Capacitor. Este incremento prepara el empaquetado y los assets, pero no publica todavía en tiendas ni configura certificados de firma.
 
 ## Alcance
 
 - Instalar Capacitor Core, CLI, Android e iOS.
-- Definir identidad compartida: nombre `GymApp` e identificador `com.gymapp.mobile`.
+- Definir identidad compartida: nombre `El Yim` e identificador técnico `com.gymapp.mobile`.
 - Usar `dist` como directorio de assets web.
 - Agregar manifest, icono y service worker para la PWA.
 - Generar los proyectos `android/` e `ios/`.

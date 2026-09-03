@@ -35,7 +35,9 @@ Cada especificación debe contener:
 19. `020-splash-screen-branding.md`: Splash screen animada con el logo oficial de El Yim.
 20. `021-compact-header.md`: Encabezado compacto sin leyenda duplicada.
 21. `022-header-sin-isotipo.md`: Encabezado sin isotipo ni leyenda de marca.
-22. `013-capacitor-platform.md`: Ejecución final de Capacitor/CapSign, sincronización y validación de Android/iOS.
+22. `023-header-icon-controls.md`: Controles de tema y salida con iconos.
+23. `024-header-hamburger-menu.md`: Menú hamburguesa horizontal para controles del encabezado.
+24. `013-capacitor-platform.md`: Ejecución final de Capacitor/CapSign, sincronización y validación de Android/iOS.
 
 La ejecución de Capacitor/CapSign queda reservada deliberadamente para el último incremento del backlog.
 

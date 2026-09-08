@@ -12,6 +12,7 @@ import { getCycleCalendar, getCycleSummary, getDefaultCycle, getStoredCycle, sav
 import { analyzeDocumentPrototype, discardDocumentReview, getStoredDocument, saveDocumentReview } from './services/documents'
 import { getPendingSyncCount, syncPendingChanges } from './services/sync'
 import { getDefaultAiProvider, getStoredAiProvider, saveAiProvider, testAiProviderConnection, validateAiProviderConfig } from './services/ai-provider'
+import BrandSplash from './components/BrandSplash.vue'
 import SkeletonLoader from './components/SkeletonLoader.vue'
 import ProgressCheckinView from './components/ProgressCheckinView.vue'
 
@@ -68,9 +69,12 @@ const providerForm = reactive({
 const providerError = ref('')
 const providerMessage = ref('')
 const providerTesting = ref(false)
+const splashVisible = ref(true)
+const headerMenuOpen = ref(false)
 const isViewLoading = ref(Boolean(sessionUser.value))
 const chartAnimationKey = ref(0)
 let viewLoadingTimer
+let splashTimer
 
 if (typeof document !== 'undefined') document.documentElement.dataset.theme = theme.value
 
@@ -282,8 +286,11 @@ function setTheme(nextTheme) {
 
 function toggleTheme() { setTheme(theme.value === 'dark' ? 'light' : 'dark') }
 
+function toggleHeaderMenu() { headerMenuOpen.value = !headerMenuOpen.value }
+
 function handleEscape(event) {
   if (event.key !== 'Escape') return
+  if (headerMenuOpen.value) return (headerMenuOpen.value = false)
   if (providerModalOpen.value) return closeProviderModal()
   if (pdfModalOpen.value) return closePdfModal()
   if (syncModalOpen.value) return closeSyncModal()
@@ -524,6 +531,7 @@ function formatFileSize(bytes) {
 
 onMounted(() => {
   document.documentElement.dataset.theme = theme.value
+  splashTimer = setTimeout(() => { splashVisible.value = false }, 1500)
   window.addEventListener('online', handleOnline)
   window.addEventListener('offline', handleOffline)
   window.addEventListener('keydown', handleEscape)
@@ -535,6 +543,7 @@ onBeforeUnmount(() => {
   window.removeEventListener('keydown', handleEscape)
   if (documentProgressTimer) clearInterval(documentProgressTimer)
   if (viewLoadingTimer) clearTimeout(viewLoadingTimer)
+  if (splashTimer) clearTimeout(splashTimer)
 })
 
 function logout() {
@@ -544,6 +553,7 @@ function logout() {
   view.value = 'welcome'
   activeTab.value = 'overview'
   focusedPanel.value = 'overview'
+  headerMenuOpen.value = false
   pdfModalOpen.value = false
   syncModalOpen.value = false
   providerModalOpen.value = false
@@ -553,16 +563,27 @@ function logout() {
 </script>
 
 <template>
-  <main :data-theme="theme" class="app-shell min-h-screen overflow-hidden px-5 py-6 text-white sm:px-8">
+  <main :data-theme="theme" class="app-shell min-h-screen overflow-hidden px-5 pb-6 pt-3 text-white sm:px-8 sm:pt-4">
+    <Transition name="brand-splash" appear>
+      <BrandSplash v-if="splashVisible" />
+    </Transition>
     <div class="mx-auto flex min-h-[calc(100vh-3rem)] max-w-6xl flex-col">
-      <header class="flex items-center justify-between">
-        <button class="flex items-center gap-3 text-left" aria-label="El Yim inicio" @click="openView(sessionUser ? 'dashboard' : 'welcome')">
-          <span class="grid size-10 place-items-center rounded-2xl bg-lime-300 font-black text-slate-950 shadow-[0_0_30px_rgba(7,176,242,0.35)]">Y</span>
-          <span class="text-lg font-bold tracking-tight">El Yim</span>
-        </button>
-        <div class="topbar-actions">
-          <button type="button" class="theme-toggle" role="switch" :aria-checked="theme === 'dark'" :aria-label="theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro'" @click="toggleTheme"><span :class="{ 'theme-label-active': theme === 'light' }">Claro</span><span class="theme-track"><span class="theme-thumb" :class="{ 'theme-thumb-light': theme === 'light' }"></span></span><span :class="{ 'theme-label-active': theme === 'dark' }">Oscuro</span></button>
-          <button v-if="sessionUser" type="button" class="logout-button" @click="logout">Salir</button>
+      <header class="flex items-center justify-end">
+        <div class="header-menu" :class="{ 'header-menu-open': headerMenuOpen }">
+          <div id="header-actions" class="topbar-actions header-action-panel" :class="{ 'header-action-panel-open': headerMenuOpen }" role="group" aria-label="Controles de apariencia y sesión" :aria-hidden="!headerMenuOpen" :inert="!headerMenuOpen">
+            <button type="button" class="header-icon-button" :class="{ 'header-icon-button-active': theme === 'light' }" :aria-pressed="theme === 'light'" aria-label="Tema claro" title="Tema claro" @click="setTheme('light')">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path></svg>
+            </button>
+            <button type="button" class="header-icon-button" :class="{ 'header-icon-button-active': theme === 'dark' }" :aria-pressed="theme === 'dark'" aria-label="Tema oscuro" title="Tema oscuro" @click="setTheme('dark')">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 15.4A8.5 8.5 0 0 1 8.6 3.5 8.5 8.5 0 1 0 20.5 15.4Z"></path></svg>
+            </button>
+            <button v-if="sessionUser" type="button" class="header-icon-button header-icon-button-logout" aria-label="Salir de El Yim" title="Salir" @click="logout">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5H6.5A1.5 1.5 0 0 0 5 6.5v11A1.5 1.5 0 0 0 6.5 19H10"></path><path d="M13 8l4 4-4 4M17 12H9"></path></svg>
+            </button>
+          </div>
+          <button type="button" class="menu-toggle-button" :class="{ 'menu-toggle-button-open': headerMenuOpen }" :aria-expanded="headerMenuOpen" aria-controls="header-actions" :aria-label="headerMenuOpen ? 'Cerrar menú de controles' : 'Abrir menú de controles'" title="Menú" @click="toggleHeaderMenu">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+          </button>
         </div>
       </header>
 

@@ -556,9 +556,9 @@ function logout() {
   <main :data-theme="theme" class="app-shell min-h-screen overflow-hidden px-5 py-6 text-white sm:px-8">
     <div class="mx-auto flex min-h-[calc(100vh-3rem)] max-w-6xl flex-col">
       <header class="flex items-center justify-between">
-        <button class="flex items-center gap-3 text-left" aria-label="GymApp inicio" @click="openView(sessionUser ? 'dashboard' : 'welcome')">
-          <span class="grid size-10 place-items-center rounded-2xl bg-lime-300 font-black text-slate-950 shadow-[0_0_30px_rgba(7,176,242,0.35)]">G</span>
-          <span class="text-lg font-bold tracking-tight">GymApp</span>
+        <button class="flex items-center gap-3 text-left" aria-label="El Yim inicio" @click="openView(sessionUser ? 'dashboard' : 'welcome')">
+          <span class="grid size-10 place-items-center rounded-2xl bg-lime-300 font-black text-slate-950 shadow-[0_0_30px_rgba(7,176,242,0.35)]">Y</span>
+          <span class="text-lg font-bold tracking-tight">El Yim</span>
         </button>
         <div class="topbar-actions">
           <button type="button" class="theme-toggle" role="switch" :aria-checked="theme === 'dark'" :aria-label="theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro'" @click="toggleTheme"><span :class="{ 'theme-label-active': theme === 'light' }">Claro</span><span class="theme-track"><span class="theme-thumb" :class="{ 'theme-thumb-light': theme === 'light' }"></span></span><span :class="{ 'theme-label-active': theme === 'dark' }">Oscuro</span></button>
@@ -573,9 +573,9 @@ function logout() {
 
       <section v-else-if="view === 'welcome'" key="welcome" class="grid flex-1 items-center gap-10 py-12 lg:grid-cols-[1.05fr_0.95fr] lg:py-16">
         <div>
-          <p class="mb-5 inline-flex rounded-full border border-lime-300/20 bg-lime-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-lime-200">Bienvenido a tu nueva rutina</p>
+          <p class="mb-5 inline-flex rounded-full border border-lime-300/20 bg-lime-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-lime-200">Bienvenido a tu Yim</p>
           <h1 class="max-w-2xl text-4xl font-black leading-[1.05] tracking-tight sm:text-6xl">Todo tu progreso, <span class="text-lime-300">en movimiento.</span></h1>
-          <p class="mt-6 max-w-xl text-base leading-7 text-slate-300 sm:text-lg">Organiza tu alimentación, entrenamiento y recuperación con una guía diaria hecha para ti.</p>
+          <p class="mt-6 max-w-xl text-base leading-7 text-slate-300 sm:text-lg">Haz de tu Yim el espacio para organizar tu alimentación, entrenamiento y recuperación con una guía diaria hecha para ti.</p>
           <div class="mt-8 flex flex-col gap-3 sm:flex-row">
             <button class="rounded-2xl bg-lime-300 px-5 py-3.5 font-bold text-slate-950 shadow-[0_12px_35px_rgba(7,176,242,0.2)] transition hover:bg-lime-200 focus:outline-none focus:ring-2 focus:ring-lime-200 focus:ring-offset-2 focus:ring-offset-slate-950" @click="openView('register')">Crear mi cuenta</button>
             <button class="rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 font-bold text-white backdrop-blur transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/60 focus:ring-offset-2 focus:ring-offset-slate-950" @click="openView('login')">Iniciar sesión</button>
@@ -604,16 +604,16 @@ function logout() {
       <section v-else-if="view === 'register' || view === 'login'" key="auth" class="flex flex-1 items-center justify-center py-12">
         <div class="w-full max-w-md rounded-[2rem] border border-white/15 bg-white/[0.08] p-6 shadow-2xl backdrop-blur-2xl sm:p-8">
           <button class="mb-8 text-sm text-slate-400 transition hover:text-white" @click="openView('welcome')">← Volver</button>
-          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-lime-300">{{ view === 'register' ? 'Crear cuenta' : 'Bienvenido de nuevo' }}</p>
-          <h1 class="mt-3 text-3xl font-black tracking-tight">{{ view === 'register' ? 'Comencemos con tu plan.' : 'Continúa con tu progreso.' }}</h1>
-          <p class="mt-3 text-sm leading-6 text-slate-400">{{ view === 'register' ? 'Tus datos quedarán listos para personalizar tu experiencia.' : 'Accede para consultar tus rutinas, comidas y registros.' }}</p>
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-lime-300">{{ view === 'register' ? 'Crear tu Yim' : 'Bienvenido de nuevo a tu Yim' }}</p>
+          <h1 class="mt-3 text-3xl font-black tracking-tight">{{ view === 'register' ? 'Comencemos a construir tu Yim.' : 'Continúa con tu progreso.' }}</h1>
+          <p class="mt-3 text-sm leading-6 text-slate-400">{{ view === 'register' ? 'Tus datos quedarán listos para personalizar tu Yim.' : 'Accede para consultar tus rutinas, comidas y registros.' }}</p>
 
           <form v-if="view === 'register'" class="mt-8 space-y-4" @submit.prevent="submitRegister">
             <label class="block text-sm font-medium" for="register-name">Nombre completo<input id="register-name" v-model="registerForm.name" type="text" autocomplete="name" class="form-input" placeholder="Ej. Alejandro García" /></label>
             <label class="block text-sm font-medium" for="register-email">Correo electrónico<input id="register-email" v-model="registerForm.email" type="email" autocomplete="email" class="form-input" placeholder="tu@correo.com" /></label>
             <label class="block text-sm font-medium" for="register-password">Contraseña<input id="register-password" v-model="registerForm.password" type="password" autocomplete="new-password" class="form-input" placeholder="Mínimo 8 caracteres" /></label>
             <label class="block text-sm font-medium" for="register-confirm">Confirmar contraseña<input id="register-confirm" v-model="registerForm.confirmPassword" type="password" autocomplete="new-password" class="form-input" placeholder="Repite tu contraseña" /></label>
-            <label class="flex items-start gap-3 text-xs leading-5 text-slate-400"><input v-model="registerForm.terms" type="checkbox" class="mt-1 accent-lime-300" />Acepto los términos y el tratamiento de mis datos para usar GymApp.</label>
+            <label class="flex items-start gap-3 text-xs leading-5 text-slate-400"><input v-model="registerForm.terms" type="checkbox" class="mt-1 accent-lime-300" />Acepto los términos y el tratamiento de mis datos para usar El Yim.</label>
             <p v-if="formError" class="rounded-2xl border border-rose-300/20 bg-rose-300/10 p-3 text-sm text-rose-100" role="alert">{{ formError }}</p>
             <button type="submit" class="w-full rounded-2xl bg-lime-300 px-5 py-3.5 font-bold text-slate-950 transition hover:bg-lime-200">Crear cuenta</button>
           </form>
@@ -695,7 +695,7 @@ function logout() {
       <section v-else key="dashboard" class="flex flex-1 items-center justify-center py-12">
         <SkeletonLoader v-if="isViewLoading" :rows="3" />
         <div v-else class="w-full max-w-5xl pb-32">
-          <div v-if="activeTab === 'overview' && focusedPanel === 'overview'" class="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><p class="text-sm font-semibold uppercase tracking-[0.16em] text-lime-300">Resumen de hoy</p><h1 class="mt-3 text-4xl font-black tracking-tight">Hola, {{ firstName }}.</h1><p class="mt-3 text-slate-400">Tu espacio para avanzar con constancia.</p></div><div class="overview-actions"><button type="button" class="overview-action overview-action-primary" @click="openFocusedPanel('checkin')"><span>✦</span><span><strong>Check in</strong><small>Registrar evolución</small></span></button><button type="button" class="overview-action" @click="openScheduleModal"><span>◷</span><span><strong>Horarios y recordatorios</strong><small>Organiza tu día</small></span></button><button type="button" class="overview-action" @click="openPdfModal"><span>↑</span><span><strong>Carga tu PDF de tu profesional</strong><small>Importa tu plan</small></span></button><button type="button" class="overview-action overview-action-sync" @click="openSyncModal"><span>↻</span><span><strong>Sincronización</strong><small>{{ formatLastSync(lastSyncAt) }}</small></span></button></div></div>
+          <div v-if="activeTab === 'overview' && focusedPanel === 'overview'" class="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><p class="text-sm font-semibold uppercase tracking-[0.16em] text-lime-300">Resumen de hoy</p><h1 class="mt-3 text-4xl font-black tracking-tight">Hola, {{ firstName }}.</h1><p class="mt-3 text-slate-400">Bienvenido a tu Yim. Avanza con constancia.</p></div><div class="overview-actions"><button type="button" class="overview-action overview-action-primary" @click="openFocusedPanel('checkin')"><span>✦</span><span><strong>Check in</strong><small>Registrar evolución</small></span></button><button type="button" class="overview-action" @click="openScheduleModal"><span>◷</span><span><strong>Horarios y recordatorios</strong><small>Organiza tu día</small></span></button><button type="button" class="overview-action" @click="openPdfModal"><span>↑</span><span><strong>Carga tu PDF de tu profesional</strong><small>Importa tu plan</small></span></button><button type="button" class="overview-action overview-action-sync" @click="openSyncModal"><span>↻</span><span><strong>Sincronización</strong><small>{{ formatLastSync(lastSyncAt) }}</small></span></button></div></div>
           <div v-if="activeTab === 'overview' && focusedPanel === 'overview'" class="grid gap-4 sm:grid-cols-3"><article class="glass-card"><p class="text-xs text-slate-400">Objetivo</p><p class="mt-3 text-base font-bold">{{ profile?.goal || 'Sin definir' }}</p><p class="mt-2 text-xs text-lime-300">Tu objetivo actual</p></article><article class="glass-card"><p class="text-xs text-slate-400">Grasa estimada</p><p class="mt-3 text-xl font-bold">{{ profile?.metrics?.bodyFat ? `${formatMetric(profile.metrics.bodyFat)}%` : '—' }}</p><p class="mt-2 text-xs text-slate-400">Línea base inicial</p></article><article class="glass-card"><p class="text-xs text-slate-400">Peso inicial</p><p class="mt-3 text-xl font-bold">{{ profile?.weightKg ? `${formatMetric(profile.weightKg)} kg` : '—' }}</p><p class="mt-2 text-xs text-slate-400">Registrado hoy</p></article></div>
 
           <ProgressCheckinView v-if="activeTab === 'overview' && focusedPanel === 'checkin'" :form="progressForm" :records="progressRecords" :error="progressError" :saved="progressSaved" @save="saveProgressCheckin" @back="focusedPanel = 'overview'" />

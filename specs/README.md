@@ -31,7 +31,8 @@ Cada especificación debe contener:
 15. `016-ai-provider-configuration.md`: Configuración manual del proveedor externo de IA.
 16. `017-loading-transitions.md`: Loaders, skeletons y transiciones de vistas.
 17. `018-interface-refinement.md`: Refinamiento de navegación, acciones y modales.
-18. `013-capacitor-platform.md`: Ejecución final de Capacitor/CapSign, sincronización y validación de Android/iOS.
+18. `019-el-yim-branding.md`: Identidad visual y lenguaje de marca de El Yim.
+19. `013-capacitor-platform.md`: Ejecución final de Capacitor/CapSign, sincronización y validación de Android/iOS.
 
 La ejecución de Capacitor/CapSign queda reservada deliberadamente para el último incremento del backlog.
 

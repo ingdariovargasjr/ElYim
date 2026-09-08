@@ -1,4 +1,4 @@
-# SPEC-000: Fundación del producto GymApp
+# SPEC-000: Fundación del producto El Yim
 
 **Estado:** aprobada como base de planeación  
 **Tipo:** producto y arquitectura  
@@ -6,7 +6,7 @@
 
 ## Objetivo
 
-GymApp debe convertir el plan entregado por el instructor y el nutriólogo —incluido cuando llegue como PDF escaneado— en una experiencia diaria clara para entrenar, comer, descansar y registrar progreso.
+El Yim debe convertir el plan entregado por el instructor y el nutriólogo —incluido cuando llegue como PDF escaneado— en una experiencia diaria clara para entrenar, comer, descansar y registrar progreso.
 
 ## Usuario principal
 
@@ -51,4 +51,3 @@ Persona que sigue un plan personalizado de ejercicio y alimentación y necesita 
 - La misma base visual puede empaquetarse posteriormente con Capacitor para Android e iOS.
 - La navegación y los componentes no dependen de datos reales todavía.
 - Las futuras funciones pueden implementarse como incrementos independientes con pruebas propias.
-

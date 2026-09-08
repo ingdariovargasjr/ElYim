@@ -1,7 +1,7 @@
 {
-  "name": "GymApp",
-  "short_name": "GymApp",
-  "description": "Tu plan de entrenamiento, alimentación y recuperación en un solo lugar.",
+  "name": "El Yim",
+  "short_name": "El Yim",
+  "description": "El Yim: tu plan de entrenamiento, alimentación y recuperación en un solo lugar.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#080c18",

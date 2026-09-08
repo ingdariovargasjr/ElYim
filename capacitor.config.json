@@ -1,6 +1,6 @@
 {
   "appId": "com.gymapp.mobile",
-  "appName": "GymApp",
+  "appName": "El Yim",
   "webDir": "dist",
   "server": {
     "androidScheme": "https"
